@@ -19,22 +19,22 @@
       <form>
         <div class="form-floating mb-3">
           <input
-            type="text"
+            type="number"
             class="form-control"
             id="PrimeiroCampo"
             placeholder="TextUm"
           />
-          <label for="InputCampoUm">Primeiro campo</label>
+          <label for="InputCampoUm">Primeiro número</label>
           <div class="form-text">Repense bem oque vai enviar</div>
         </div>
         <div class="form-floating mb-3">
           <input
-            type="text"
+            type="number"
             class="form-control"
             id="SegundoCampo"
             placeholder="TextDois"
           />
-          <label for="inputCampoDois">Segundo campo</label>
+          <label for="inputCampoDois">Segundo número</label>
         </div>
         <div class="mb-3 form-check">
           <input type="checkbox" class="form-check-input" id="Check1" />
@@ -42,7 +42,9 @@
             >Clique se achar confiável</label
           >
         </div>
-        <button type="submit" class="btn btn-dark">Enviar</button>
+        <button onclick="calcular()" type="submit" class="btn btn-dark">
+          Enviar
+        </button>
         <div id="resultado">
           <p>Esse sera o resultado</p>
           <p>Tudo certo</p>
