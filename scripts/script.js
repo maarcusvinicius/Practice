@@ -6,8 +6,8 @@ let resultado = document.getElementById("resultado");
 function calcular() {
   console.log("Calculando...");
 
-  let larguraDaParede = inputPrimeiroNumber.value;
-  let alturaDaParede = inputSegundoNumber.value;
+  let larguraDaParede = InputCampoUm.value;
+  let alturaDaParede = InputCampoDois.value;
 
   let area = larguraDaParede * alturaDaParede;
   let tinta = area / 2;
