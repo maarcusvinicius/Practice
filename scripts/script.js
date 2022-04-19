@@ -3,7 +3,13 @@ let InputCampoDois = document.getElementById("SegundoCampo");
 
 let resultado = document.getElementById("resultado");
 
-function calcular() {
+function calcular() { 
+  botaoHandler(event);
+  function botaoHandler(event){
+    event.preventDefault();
+    console.log("Botão Clicado!");
+  }
+
   console.log("Calculando...");
 
   let larguraDaParede = InputCampoUm.value;

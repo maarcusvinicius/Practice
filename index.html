@@ -42,12 +42,19 @@
             >Clique se achar confiável</label
           >
         </div>
-        <button onclick="calcular()" type="submit" class="btn btn-dark">
+        <button id="botao" onclick="calcular()" type="submit" class="btn btn-dark">
           Enviar
         </button>
-        <div id="resultado">
-        </div>
+        <button class="btn btn-dark">
+          Resert
+        </button>
       </form>
+      <br />
+      <div class="card">
+        <div class="card-body">
+          <h6 id="resultado"></h6>
+        </div>
+      </div>
     </div>
 
     <script src="./scripts/script.js"></script>
