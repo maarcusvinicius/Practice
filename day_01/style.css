@@ -1,0 +1,42 @@
+body {
+  background-color: #43454a;
+}
+
+.container {
+  margin: auto;
+  margin-top: 160px;
+
+  width: 800px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  background-color: #292a2d;
+  border-radius: 10px;
+}
+
+p {
+  font-size: 100px;
+  font-weight: bold;
+  line-height: 1.1;
+  
+  background-image: linear-gradient(to left, rebeccapurple, steelblue, turquoise);
+  background-clip: text;
+  background-size: 500% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: black;
+
+  transition: 1s;
+  animation: degrade-animado 1s infinite alternate;
+}
+
+@keyframes degrade-animado {
+  0% {
+    background-position-x: 0%;
+  }
+  100% {
+    background-position-x: 100%;
+  }
+}
