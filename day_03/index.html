@@ -10,36 +10,32 @@
   </head>
 
   <body>
-    <div class="container">
-      <div id="resultado">12312</div>
+    <div class="calculator">
+      <div class="calculator__display">0</div>
 
-      <div class="options">
+      <div class="calculator__keys">
 
-        <div class="grid-solu">
-          <div class="grid-item">+</div>
-          <div class="grid-item">-</div>
-          <div class="grid-item">x</div>
-          <div class="grid-item">%</div>
-        </div>
-        
-        <div class="grid-options">
-          <div class="grid-item">7</div>
-          <div class="grid-item">8</div>
-          <div class="grid-item">9</div>
-          <div class="grid-item">4</div>
-          <div class="grid-item">5</div>
-          <div class="grid-item">6</div>
-          <div class="grid-item">1</div>
-          <div class="grid-item">2</div>
-          <div class="grid-item">3</div>
-          
-          <div class="grid-item">0</div>
-          <div class="grid-item">.</div>
-          <div class="grid-item">C</div>
-          
-          <div class="grid-item-equals">=</div>
+        <button class="key--operator" data-action="add">+</button>
+        <button class="key--operator" data-action="subtract">-</button>
+        <button class="key--operator" data-action="multiply">&times;</button>
+        <button class="key--operator" data-action="divide">÷</button>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>0</button>
+        <button data-action="decimal">.</button>
+        <button data-action="clear">CE</button>
+        <button class="key--equal" data-action="calculate">=</button>
         </div>
       </div>
     </div>
+
+    <script src="main.js"></script>
   </body>
 </html>
