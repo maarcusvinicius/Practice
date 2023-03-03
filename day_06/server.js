@@ -1,19 +1,21 @@
-function isPrime(n) {
-  if (n <= 1) {
-    return false;
-  }
-  for (let i = 2; i <= Math.sqrt(n); i++) {
-    if (n % i === 0) {
-      return false;
+// Create an Array
+const myNumbers = [4, 1, -20, -7, 5, 9, -6];
+
+// Call removeNeg with a callback
+const posNumbers = removeNeg(myNumbers, (x) => x <= 0);
+
+
+// Keep only positive numbers
+function removeNeg(numbers, callback) {
+  const myArray = [];
+  for (const x of numbers) {
+    if (callback(x)) {
+      myArray.push(x);
     }
   }
-  return true;
+  return myArray;
 }
 
-function main() {
-  const primeNumbers = Array.from({ length: 1000 }, (_, i) => i + 1)
-    .filter(isPrime);
-  return primeNumbers.reduce((acc, val) => acc + val, 0);
-}
 
-console.log(main());
+// Display Result
+console.log(posNumbers)
