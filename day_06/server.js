@@ -1,21 +1,15 @@
-// Create an Array
-const myNumbers = [4, 1, -20, -7, 5, 9, -6];
+async function myDisplay() {
+  var x = 0;
+  let myPromise = new Promise(function (resolve, reject) {
+    resolve("I love You !!");
+  });
 
-// Call removeNeg with a callback
-const posNumbers = removeNeg(myNumbers, (x) => x <= 0);
-
-
-// Keep only positive numbers
-function removeNeg(numbers, callback) {
-  const myArray = [];
-  for (const x of numbers) {
-    if (callback(x)) {
-      myArray.push(x);
-    }
+  if ((x == 0)) {
+    await myPromise;
+    console.log(myPromise)
+  } else {
+    console.log("não")
   }
-  return myArray;
 }
 
-
-// Display Result
-console.log(posNumbers)
+myDisplay();
