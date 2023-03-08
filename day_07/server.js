@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded());
 app.use("/api", student);
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send("Server Running");
 });
 
 const PORT = 5005;
