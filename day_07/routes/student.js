@@ -18,38 +18,41 @@ router.get("/student/:id", (req, res) => {
   let student = students[req.params.id];
   if (student) {
     res.json(student);
+
+    let id = req.params.id;
+    res.status(201).send(`Requisição recebida com sucesso! ${id}`);
   } else {
-    res.send("Aluno não encontrado!")
+    res.send("Aluno não encontrado!");
   }
 });
 
 router.post("/student/add", (req, res) => {
-  // console.log(req.body);
+  students.push(req.body);
 
-  let student = students.push(req.body);
-  res.json(student);
+  let id = req.body.id;
+  res.status(201).send(`Requisição recebida com sucesso! ${id}`);
 });
 
-// router.put("/student/atl/:id", (req, res) => {
-//   // console.log(req.params.id)
+router.put("/student/atl/:id", (req, res) => {
+  const id = req.params.id;
+  const novoNome = req.body.name;
 
-//   // let student = students.indexOf(req.body.id); 
-//   let student = students.map(() => {( req.body.name )})
-//   res.json(student);
+  const index = students.findIndex((p) => p.id === id);
 
-//   // if (student !== -1) {
-//   //   students[student] = (req.body.name)
-//   //   res.json(student)
-//   // } else {
-//   //   res.send("Algo deu errado")
-//   // }
-// })
+  if (index >= 0) {
+    students[index].name = novoNome;
+    res.status(200).send("Nome da pessoa atualizado com sucesso");
+  } else {
+    res.status(404).send("Pessoa não encontrada");
+  }
+});
 
 router.delete("/student/delete", (req, res) => {
-  console.log(req.body.id);
-
   let student = students.splice(req.body.id);
   res.json(student);
+
+  let id = req.body.id;
+  res.status(201).send(`Requisição recebida com sucesso! ${id}`);
 });
 
 module.exports = router;
