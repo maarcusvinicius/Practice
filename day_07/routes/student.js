@@ -27,9 +27,14 @@ router.get("/student/:id", (req, res) => {
 });
 
 router.post("/student/add", (req, res) => {
-  students.push(req.body);
+  // students.push(req.body);
 
   let id = req.body.id;
+  let name = req.body.name;
+  let age = req.body.age;
+
+  students.push({id, name, age})
+
   res.status(201).send(`Requisição recebida com sucesso! ${id}`);
 });
 
