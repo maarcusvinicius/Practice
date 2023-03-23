@@ -1,17 +1,14 @@
-const express = require("express");
-const app = express();
-
 const bodyParser = require("body-parser");
+const express = require("express");
+const path = require("path");
+const app = express();
 
 const student = require("./routes/student");
 
 app.use(bodyParser.urlencoded());
 
+app.use("/", express.static(path.join(__dirname, "public")))
 app.use("/api", student);
-
-app.get("/", (req, res) => {
-  res.send("Server Running");
-});
 
 const PORT = 5005;
 app.listen(PORT, () => {
