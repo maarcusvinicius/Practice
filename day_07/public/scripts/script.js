@@ -9,7 +9,7 @@ function updateStudents() {
       return res.json();
     })
     .then((json) => {
-      // console.log(json)
+      console.log(json)
 
       let postStudents = "";
 
@@ -56,7 +56,7 @@ function newStudent() {
 }
 
 function deleteStudent() {
-  // let id = document.getElementById("id").value;
+  let id = document.getElementById("id").value;
   let name = document.getElementById("name").value;
   let age = document.getElementById("age").value;
 }
