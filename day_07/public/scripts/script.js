@@ -55,6 +55,25 @@ function newStudent() {
   });
 }
 
+// function newFunction() {
+//   fetch(`http://your-api-url.com/your-array/${idToEdit}`, {
+//   method: 'PUT',
+//   body: JSON.stringify(updatedObj),
+//   headers: {
+//     'Content-Type': 'application/json'
+//   }
+// })
+//   .then(response => response.json())
+//   .then(data => {
+//     // handle success response here
+//     console.log(data);
+//   })
+//   .catch(error => {
+//     // handle error here
+//     console.error(error);
+//   });
+// }
+
 function deleteStudent() {
   let id = document.getElementById("id").value;
   let name = document.getElementById("name").value;

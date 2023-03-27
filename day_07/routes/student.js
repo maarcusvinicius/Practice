@@ -60,4 +60,14 @@ router.delete("/student/delete", (req, res) => {
   res.status(201).send(`Requisição recebida com sucesso! ${id}`);
 });
 
+// const sstu = [
+//   { id: 1, name: 'John' },
+//   { id: 2, name: 'Jane' },
+//   { id: 3, name: 'Bob' }
+// ];
+
+// const idSstu = 2;
+
+// const updatedObj = { id: 2, name: 'Janet' };
+
 module.exports = router;
