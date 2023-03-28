@@ -33,7 +33,7 @@ function updateStudents() {
 }
 
 function newStudent() {
-  let id = document.getElementById("id").value;
+  // let id = document.getElementById("id").value;
   let name = document.getElementById("name").value;
   let age = document.getElementById("age").value;
 
@@ -49,7 +49,7 @@ function newStudent() {
     console.log(res);
     updateStudents();
 
-    document.getElementById("id").value = "";
+    // document.getElementById("id").value = "";
     document.getElementById("name").value = "";
     document.getElementById("age").value = "";
   });
@@ -75,7 +75,7 @@ function newStudent() {
 // }
 
 function deleteStudent() {
-  let id = document.getElementById("id").value;
+  // let id = document.getElementById("id").value;
   let name = document.getElementById("name").value;
   let age = document.getElementById("age").value;
 }
