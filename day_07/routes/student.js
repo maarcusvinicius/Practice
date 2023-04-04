@@ -35,8 +35,6 @@ router.post("/student/add", (req, res) => {
 
   students.push(student);
   res.json(student);
-
-  res.status(201).send(`Requisição recebida com sucesso! ${id}`);
 });
 
 router.put("/student/atl/:id", (req, res) => {
