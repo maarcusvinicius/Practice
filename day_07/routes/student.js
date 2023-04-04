@@ -1,5 +1,8 @@
 const express = require("express");
+const bodyParser = require('body-parser');
 const router = express.Router();
+
+router.use(bodyParser.json());
 
 let students = [
   { id: "0", name: "Jose", age: "54" },
@@ -27,13 +30,11 @@ router.get("/student/:id", (req, res) => {
 });
 
 router.post("/student/add", (req, res) => {
-  // students.push(req.body);
+  const { id, name, age } = req.body;
+  const student = { id, name, age };
 
-  let id = req.body.id;
-  let name = req.body.name;
-  let age = req.body.age;
-
-  students.push({id, name, age})
+  students.push(student);
+  res.json(student);
 
   res.status(201).send(`Requisição recebida com sucesso! ${id}`);
 });
@@ -59,15 +60,5 @@ router.delete("/student/delete", (req, res) => {
   let id = req.body.id;
   res.status(201).send(`Requisição recebida com sucesso! ${id}`);
 });
-
-// const sstu = [
-//   { id: 1, name: 'John' },
-//   { id: 2, name: 'Jane' },
-//   { id: 3, name: 'Bob' }
-// ];
-
-// const idSstu = 2;
-
-// const updatedObj = { id: 2, name: 'Janet' };
 
 module.exports = router;
