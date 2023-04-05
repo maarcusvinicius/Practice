@@ -20,8 +20,11 @@ function updateStudents() {
             <div class="card-header">
               <h5 class="card-title">#${post.id}</h5>
             </div>
-            <div class="card-body">
+            <div class="card-body hstack gap-3">
               <div class="card-text">${post.name}, ${post.age}</div>
+              <div class="ms-auto">
+                <button class="btn btn-danger" type="button">Excluir</button>
+              </div>
             </div>
           </div>
         `;
@@ -56,7 +59,7 @@ function newStudent() {
 }
 
 function deleteStudent() {
-  // let id = document.getElementById("id").value;
+  let id = document.getElementById("id").value;
   let name = document.getElementById("name").value;
   let age = document.getElementById("age").value;
 }
