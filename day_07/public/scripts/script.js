@@ -23,7 +23,7 @@ function updateStudents() {
             <div class="card-body hstack gap-3">
               <div class="card-text">${post.name}, ${post.age}</div>
               <div class="ms-auto">
-                <button class="btn btn-danger" type="button">Excluir</button>
+                <button id="data-id" class="btn btn-danger" type="button" onclick="deleteStudent(${post.id})">Excluir</button>
               </div>
             </div>
           </div>
@@ -58,8 +58,17 @@ function newStudent() {
   });
 }
 
-function deleteStudent() {
-  let id = document.getElementById("id").value;
-  let name = document.getElementById("name").value;
-  let age = document.getElementById("age").value;
+function deleteStudent(id) {
+  fetch(`http://localhost:5005/api/student/delete/${id}`, {
+    method: 'DELETE'
+  })
+  .then(response => {
+    if (response.ok) {
+      alert('Estudante excluído com sucesso!');
+      window.location.reload();
+    } else {
+      throw new Error('Erro ao excluir estudante');
+    }
+  })
+  .catch(error => console.error(error));
 }
