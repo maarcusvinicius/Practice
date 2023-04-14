@@ -51,25 +51,15 @@ router.put("/student/atl/:id", (req, res) => {
   }
 });
 
-// router.delete("/student/delete/:id", (req, res) => {
-//   let student = students.splice(req.params.id);
-//   res.json(student);
-
-  // let id = req.params.id;
-  // res.status(201).send(`Requisição recebida com sucesso! ${id}`);
-// });
-
 router.delete("/student/delete/:id", async (req, res) => {
-  try {
-    const id = req.params.id; 
-    const deletedStudent = await Student.findByIdAndDelete(id);
-    if (!deletedStudent) {
-      return res.status(404).send({ message: 'Estudante não encontrado.' });
-    }
-    return res.send({ message: 'Estudante excluído com sucesso.' });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).send({ message: 'Erro ao excluir o estudante.' });
+  const studentId = req.params.id;
+  const studentIndex = students.findIndex(student => student.id === studentId);
+
+  if (studentIndex === -1) {
+    res.status(404).json({ message: `Estudante com ID ${studentId} não encontrado.` });
+  } else {
+    students.splice(studentIndex, 1);
+    res.json({ message: `Estudante com ID ${studentId} excluído com sucesso!` });
   }
 });
 

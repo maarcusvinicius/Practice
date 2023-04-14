@@ -23,7 +23,7 @@ function updateStudents() {
             <div class="card-body hstack gap-3">
               <div class="card-text">${post.name}, ${post.age}</div>
               <div class="ms-auto">
-                <button id="data-id" class="btn btn-danger" type="button" onclick="deleteStudent(${post.id})">Excluir</button>
+                <button class="btn btn-danger" type="button" data-id="${post.id}" onclick="deleteStudent(event)">Excluir</button>
               </div>
             </div>
           </div>
@@ -58,8 +58,11 @@ function newStudent() {
   });
 }
 
-function deleteStudent(id) {
-  fetch(`http://localhost:5005/api/student/delete/${id}`, {
+function deleteStudent(event) {
+  const studentId = event.target.dataset.id;
+  // console.log(studentId);
+
+  fetch(`http://localhost:5005/api/student/delete/${studentId}`, {
     method: 'DELETE'
   })
   .then(response => {
@@ -67,8 +70,10 @@ function deleteStudent(id) {
       alert('Estudante excluído com sucesso!');
       window.location.reload();
     } else {
-      throw new Error('Erro ao excluir estudante');
+      console.error('Erro ao excluir estudante:', response.status);
     }
   })
-  .catch(error => console.error(error));
+  .catch(error => {
+    console.error('Erro de rede ao excluir estudante:', error);
+  });
 }
