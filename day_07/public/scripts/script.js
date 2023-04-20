@@ -1,3 +1,4 @@
+const students = require('../../routes/student');
 
 document.addEventListener("DOMContentLoaded", () => {
   updateStudents();
@@ -9,11 +10,9 @@ function updateStudents() {
       return res.json();
     })
     .then((json) => {
-      console.log(json)
+      let posts = JSON.parse(json);
 
       let postStudents = "";
-
-      let posts = JSON.parse(json);
       posts.forEach((post) => {
         let postStudent = `
           <div id=${post.id} class="card mb-4">
@@ -35,10 +34,25 @@ function updateStudents() {
     });
 }
 
+// let students = [
+//   { id: 1, name: "Marcus", age: 54 },
+// ]
+let nextId = 1;
+
+function getNextId() {
+  let maxId = 0;
+  students.forEach(student => {
+    if (student.id > maxId) {
+      maxId = student.id;
+    }
+  });
+  return maxId + 1;
+}
+
 function newStudent() {
-  let id = document.getElementById("id").value;
   let name = document.getElementById("name").value;
   let age = document.getElementById("age").value;
+  let id = getNextId()
 
   let post = { id, name, age };
 
@@ -52,10 +66,11 @@ function newStudent() {
     console.log(res);
     updateStudents();
 
-    document.getElementById("id").value = "";
     document.getElementById("name").value = "";
     document.getElementById("age").value = "";
-  });
+  })
+
+  nextId++;
 }
 
 function deleteStudent(event) {
@@ -65,12 +80,12 @@ function deleteStudent(event) {
   fetch(`http://localhost:5005/api/student/delete/${studentId}`, {
     method: 'DELETE'
   })
-  .then(response => {
-    if (response.ok) {
+  .then(res => {
+    if (res.ok) {
       alert('Estudante excluído com sucesso!');
       window.location.reload();
     } else {
-      console.error('Erro ao excluir estudante:', response.status);
+      console.error('Erro ao excluir estudante:', res.status);
     }
   })
   .catch(error => {
