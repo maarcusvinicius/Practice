@@ -1,28 +1,25 @@
-const students = require('../../routes/student');
-
 document.addEventListener("DOMContentLoaded", () => {
   updateStudents();
 });
 
+let nextId = 1;
+
 function updateStudents() {
   fetch("http://localhost:5005/api/students")
-    .then((res) => {
-      return res.json();
-    })
-    .then((json) => {
-      let posts = JSON.parse(json);
-
+    .then((res) => res.json())
+    .then((students) => {
       let postStudents = "";
-      posts.forEach((post) => {
+
+      students.forEach((student) => {
         let postStudent = `
-          <div id=${post.id} class="card mb-4">
+          <div id=${student.id} class="card mb-4">
             <div class="card-header">
-              <h5 class="card-title">#${post.id}</h5>
+              <h5 class="card-title">#${student.id}</h5>
             </div>
             <div class="card-body hstack gap-3">
-              <div class="card-text">${post.name}, ${post.age}</div>
+              <div class="card-text">${student.name}, ${student.age}</div>
               <div class="ms-auto">
-                <button class="btn btn-danger" type="button" data-id="${post.id}" onclick="deleteStudent(event)">Excluir</button>
+                <button class="btn btn-danger" type="button" data-id="${student.id}" onclick="deleteStudent(event)">Excluir</button>
               </div>
             </div>
           </div>
@@ -31,46 +28,43 @@ function updateStudents() {
       });
 
       document.getElementById("posts").innerHTML = postStudents;
+      getNextId(students);
     });
 }
 
-// let students = [
-//   { id: 1, name: "Marcus", age: 54 },
-// ]
-let nextId = 1;
-
-function getNextId() {
+function getNextId(students) {
   let maxId = 0;
-  students.forEach(student => {
+  students.forEach((student) => {
     if (student.id > maxId) {
       maxId = student.id;
     }
   });
-  return maxId + 1;
+  nextId = maxId + 1;
 }
 
 function newStudent() {
   let name = document.getElementById("name").value;
   let age = document.getElementById("age").value;
-  let id = getNextId()
+  let id = nextId;
 
   let post = { id, name, age };
 
   const options = {
     method: "POST",
     headers: new Headers({ "content-type": "application/json" }),
-    body: JSON.stringify(post)
+    body: JSON.stringify(post),
   };
 
-  fetch("http://localhost:5005/api/student/add", options).then(res => {
-    console.log(res);
-    updateStudents();
+  fetch("http://localhost:5005/api/student/add", options).then((res) => {
+    if (res.ok) {
+      updateStudents();
 
-    document.getElementById("name").value = "";
-    document.getElementById("age").value = "";
-  })
-
-  nextId++;
+      document.getElementById("name").value = "";
+      document.getElementById("age").value = "";
+    } else {
+      console.error('Erro ao adicionar estudante:', res.status);
+    }
+  });
 }
 
 function deleteStudent(event) {
@@ -83,7 +77,7 @@ function deleteStudent(event) {
   .then(res => {
     if (res.ok) {
       alert('Estudante excluído com sucesso!');
-      window.location.reload();
+      updateStudents();
     } else {
       console.error('Erro ao excluir estudante:', res.status);
     }

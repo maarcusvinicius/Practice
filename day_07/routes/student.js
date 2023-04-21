@@ -1,35 +1,41 @@
 const express = require("express");
-const bodyParser = require('body-parser');
 const router = express.Router();
-
-router.use(bodyParser.json());
-
-let students = [
-  { id: 1, name: "Marcus", age: 54 },
-];
+const students = [];
 
 router.get("/students", (req, res) => {
-  res.json(JSON.stringify(students));
+  res.json(students);
+  console.log(students);
 });
 
 router.post("/student/add", (req, res) => {
-  const { id, name, age } = req.body;
-  const student = { id, name, age };
+  const { name, age } = req.body;
+  const id = getNextId();
 
-  students.push(student);
-  res.json(student);
+  students.push({ id, name, age });
+
+  res.json({ message: "Estudante adicionado com sucesso!" });
 });
 
-router.delete("/student/delete/:id", async (req, res) => {
+router.delete("/student/delete/:id", (req, res) => {
   const studentId = req.params.id;
-  const studentIndex = students.findIndex(student => student.id === studentId);
+  const index = students.findIndex((student) => student.id === Number(studentId));
 
-  if (studentIndex === -1) {
-    res.status(404).json({ message: `Estudante com ID ${studentId} não encontrado.` });
+  if (index === -1) {
+    res.status(404).json({ message: "Estudante não encontrado" });
   } else {
-    students.splice(studentIndex, 1);
-    res.json({ message: `Estudante com ID ${studentId} excluído com sucesso!` });
-  }s
+    students.splice(index, 1);
+    res.json({ message: "Estudante excluído com sucesso!" });
+  }
 });
 
-module.exports = router, students;
+function getNextId() {
+  let maxId = 0;
+  students.forEach((student) => {
+    if (student.id > maxId) {
+      maxId = student.id;
+    }
+  });
+  return maxId + 1;
+}
+
+module.exports = router;
