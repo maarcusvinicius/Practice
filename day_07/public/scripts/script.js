@@ -45,26 +45,28 @@ function getNextId(students) {
 function newStudent() {
   let name = document.getElementById("name").value;
   let age = document.getElementById("age").value;
-  let id = nextId;
-
-  let post = { id, name, age };
 
   const options = {
     method: "POST",
-    headers: new Headers({ "content-type": "application/json" }),
-    body: JSON.stringify(post),
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ name, age })
   };
 
-  fetch("http://localhost:5005/api/student/add", options).then((res) => {
-    if (res.ok) {
-      updateStudents();
-
-      document.getElementById("name").value = "";
-      document.getElementById("age").value = "";
-    } else {
-      console.error('Erro ao adicionar estudante:', res.status);
-    }
-  });
+  fetch("http://localhost:5005/api/student/add", options)
+    .then(res => {
+      if (res.ok) {
+        updateStudents();
+        document.getElementById("name").value = "";
+        document.getElementById("age").value = "";
+      } else {
+        console.error('Erro ao adicionar estudante:', res.status);
+      }
+    })
+    .catch(error => {
+      console.error('Erro de rede ao adicionar estudante:', error);
+    });
 }
 
 function deleteStudent(event) {

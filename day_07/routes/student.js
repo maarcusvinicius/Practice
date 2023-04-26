@@ -9,11 +9,11 @@ router.get("/students", (req, res) => {
 
 router.post("/student/add", (req, res) => {
   const { name, age } = req.body;
-  const id = getNextId();
+  const student = { id: getNextId(), name, age };
 
-  students.push({ id, name, age });
+  students.push(student);
 
-  res.json({ message: "Estudante adicionado com sucesso!" });
+  res.status(201).json({ message: 'Estudante adicionado com sucesso', student });
 });
 
 router.delete("/student/delete/:id", (req, res) => {
@@ -30,11 +30,13 @@ router.delete("/student/delete/:id", (req, res) => {
 
 function getNextId() {
   let maxId = 0;
-  students.forEach((student) => {
-    if (student.id > maxId) {
-      maxId = student.id;
-    }
-  });
+  if (students.length > 0) {
+    students.forEach((student) => {
+      if (student.id > maxId) {
+        maxId = student.id;
+      }
+    });
+  }
   return maxId + 1;
 }
 
