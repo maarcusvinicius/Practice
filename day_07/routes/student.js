@@ -3,7 +3,8 @@ const router = express.Router();
 const students = [];
 
 router.get("/students", (req, res) => {
-  res.json(students);
+  // res.json(students);
+  res.json(JSON.stringify(students));
   console.log(students);
 });
 
