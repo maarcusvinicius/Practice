@@ -1,9 +1,11 @@
 const express = require("express");
+const bodyParser = require('body-parser');
 const router = express.Router();
 const students = [];
 
+router.use(bodyParser.json());
+
 router.get("/students", (req, res) => {
-  // res.json(students);
   res.json(JSON.stringify(students));
   console.log(students);
 });
@@ -14,7 +16,9 @@ router.post("/student/add", (req, res) => {
 
   students.push(student);
 
-  res.status(201).json({ message: 'Estudante adicionado com sucesso', student });
+  res.status(201).json({
+    message: 'Estudante adicionado com sucesso', student 
+  });
 });
 
 router.delete("/student/delete/:id", (req, res) => {

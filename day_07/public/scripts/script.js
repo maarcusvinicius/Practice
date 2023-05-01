@@ -7,9 +7,10 @@ let nextId = 1;
 function updateStudents() {
   fetch("http://localhost:5005/api/students")
     .then((res) => res.json())
-    .then((students) => {
+    .then((json) => {
       let postStudents = "";
 
+      let students = JSON.parse(json);
       students.forEach((student) => {
         let postStudent = `
           <div id=${student.id} class="card mb-4">
@@ -29,7 +30,7 @@ function updateStudents() {
 
       document.getElementById("posts").innerHTML = postStudents;
       getNextId(students);
-    });
+    })
 }
 
 function getNextId(students) {
