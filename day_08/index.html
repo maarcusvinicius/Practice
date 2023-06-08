@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amo vc</title>
+  </head>
+
+  <body>
+    <div id="conteudo">
+      <h2>Aceita renovar comigo?</h2>
+      <div class="botoes">
+        <button class="btn" onclick="sim()">SIM</button>
+        <button class="btn" onclick="desvia(this)" onmouseover="desvia(this)">
+          NÃO
+        </button>
+      </div>
+    </div>
+    <div id="foto-1">
+      <img class="modura-1" src="./assets/Objetos/EDIT-moldura 2.png" alt="" />
+      <img class="image-1" src="./assets/Namoro/IMG-Beijin.png" alt="" />
+    </div>
+    <div id="foto-2">
+      <img class="modura-2" src="./assets/Objetos/EDIT-moldura 3.png" alt="" />
+      <img class="image-2" src="./assets/Namoro/GIF-peitin.gif" alt="" />
+    </div>
+    <div id="foto-3">
+      <img class="modura-3" src="./assets/Objetos/EDIT-moldura 3.png" alt="" />
+      <img class="image-3" src="./assets/Namoro/GIF-juntos.gif" alt="" />
+    </div>
+    <div id="foto-4">
+      <img class="modura-4" src="./assets/Objetos/EDIT-moldura 2.png" alt="" />
+      <img class="image-4" src="./assets/Namoro/IMG-Maos.png" alt="" />
+    </div>
+  </body>
+  <style>
+    #conteudo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 10px;
+
+      text-align: center;
+      font-family: sans-serif;
+      background: #cf0000;
+      background-image: repeating-linear-gradient(
+        -45deg,
+        #cf0000,
+        #cf0000 30px,
+        #820000 30px,
+        #820000 40px
+      );
+    }
+
+    .btn {
+      background: black;
+      color: white;
+      border: none;
+      padding: 10px;
+      width: 80px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #foto-1 .modura-1 {
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      z-index: 2;
+
+      top: 7%;
+      left: 7%;
+    }
+
+    #foto-1 .image-1 {
+      position: fixed;
+      width: 200px;
+      height: 200px;
+      z-index: 1;
+
+      top: 10%;
+      left: 10%;
+    }
+
+    #foto-2 .modura-2 {
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      z-index: 2;
+
+      bottom: 7%;
+      left: 14%;
+    }
+
+    #foto-2 .image-2 {
+      position: fixed;
+      width: 195px;
+      height: 195px;
+      z-index: 1;
+
+      bottom: 16%;
+      left: 17%;
+    }
+
+    #foto-3 .modura-3 {
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      z-index: 2;
+
+      top: 7%;
+      right: 7%;
+    }
+
+    #foto-3 .image-3 {
+      position: fixed;
+      width: 195px;
+      height: 195px;
+      z-index: 1;
+
+      top: 10%;
+      right: 10%;
+    }
+
+    #foto-4 .modura-4 {
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      z-index: 2;
+
+      bottom: 7%;
+      right: 14%;
+    }
+
+    #foto-4 .image-4 {
+      position: fixed;
+      width: 195px;
+      height: 195px;
+      z-index: 1;
+
+      bottom: 15.5%;
+      right: 17%;
+    }
+
+    img {
+      max-width: 640px;
+      transform: translateY(0px);
+      animation: float 10s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-30px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+  </style>
+
+  <script>
+    function sim() {
+      alert("Você aceitou! :)");
+      location.href = "";
+    }
+
+    function desvia(btn) {
+      btn.style.position = "absolute";
+      btn.style.bottom = geraPosicao(10, 90);
+      btn.style.left = geraPosicao(10, 90);
+      console.log("opa, desviei...");
+    }
+
+    function geraPosicao(min, max) {
+      return Math.random() * (max - min) + min + "%";
+    }
+  </script>
+</html>
